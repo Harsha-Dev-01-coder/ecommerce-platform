@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
   experimental: {
     agentFeedback: true,
   },
+  images: {
+  remotePatterns: [
+    {
+      protocol: "https",
+      hostname: "placehold.co",
+      pathname: "/**",
+    },
+  ],
+},
   cacheComponents: true,
   partialPrefetching: true,
   turbopack: {
