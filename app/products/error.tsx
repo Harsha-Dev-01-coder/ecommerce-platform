@@ -14,7 +14,6 @@ export default function ProductsError({
   useEffect(() => {
     console.error("Products page error:", error);
   }, [error]);
-
   return (
     <section
       className="mx-auto flex min-h-[60vh] max-w-7xl items-center px-4 py-16 sm:px-6 lg:px-8"
