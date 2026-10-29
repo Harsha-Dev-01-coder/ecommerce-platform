@@ -2,12 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+
+import AddToCartButton from "./AddToCartButton";
+import WishListButton from "./WishListButton";
 import { getProductById } from "@/lib/services/productService";
 
+export const instant = false;
+
 type ProductDetailsPageProps = {
-  params: Promise<{
-    id: string;
-  }>;
+  params: Promise<{ id: string }>;
 };
 
 function ProductDetailsLoading() {
@@ -73,6 +76,10 @@ async function ProductDetails({ params }: ProductDetailsPageProps) {
                 : "Out of stock"}
             </span>
           </div>
+
+          <AddToCartButton product={product} />
+
+          <WishListButton product={product} />
 
           <div className="mt-8 border-t border-gray-200 pt-6">
             <p className="text-sm text-gray-500">

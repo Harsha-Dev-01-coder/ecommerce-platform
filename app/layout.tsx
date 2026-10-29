@@ -3,11 +3,11 @@ import "./globals.css";
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import StoreProvider from "@/app/StoreProvider";
 
 export const metadata: Metadata = {
   title: "ShopSphere | Your Online Store",
-  description:
-    "Discover quality products at great prices with ShopSphere.",
+  description: "Discover quality products at great prices with ShopSphere.",
 };
 
 export default function RootLayout({
@@ -18,11 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="flex min-h-screen flex-col antialiased">
-        <Navbar />
+        <StoreProvider>
+          <Navbar />
 
-        <main className="flex-1">{children}</main>
+          <main className="flex-1">{children}</main>
 
-        <Footer />
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );

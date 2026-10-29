@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+export const instant = false;
+
 export default function HomePage() {
   return (
     <section className="relative overflow-hidden bg-gray-950 text-white">
