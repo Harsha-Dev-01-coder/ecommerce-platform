@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/lib/supabase/server";
-import ProfileForm from ".//ProfileForm";
+import ProfileForm from "./ProfileForm";
 
 export default async function EditProfilePage() {
   const supabase = await createClient();

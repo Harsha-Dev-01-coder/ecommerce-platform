@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { createClient } from "@/lib/supabase/server";
-import AddressManager from ".//AddressManager";
+import AddressManager from "./AddressManager";
 
 export type ShippingAddress = {
   id: string;
