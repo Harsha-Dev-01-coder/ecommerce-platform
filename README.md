@@ -4,6 +4,8 @@ A modern, full-stack e-commerce application built with Next.js, TypeScript, Tail
 
 ShopSphere provides a complete shopping experience with product discovery, cart management, wishlist functionality, secure authentication, checkout, order tracking, and an admin dashboard.
 
+🌐 Live Application: https://ecommerce-platform-ten-gamma.vercel.app/
+
 ✨ Features
 
 Customer Experience
@@ -62,7 +64,12 @@ Vercel	Deployment
 ecommerce-platform/
 ├── app/
 │   ├── account/
+│   │   ├── addresses/
+│   │   ├── orders/
+│   │   └── profile/
 │   ├── admin/
+│   │   ├── orders/
+│   │   └── products/
 │   ├── auth/
 │   ├── cart/
 │   ├── checkout/
@@ -70,7 +77,9 @@ ecommerce-platform/
 │   ├── orders/
 │   ├── products/
 │   ├── signup/
-│   └── wishlist/
+│   ├── wishlist/
+│   ├── layout.tsx
+│   └── page.tsx
 ├── components/
 │   ├── cart/
 │   ├── layout/
@@ -83,9 +92,10 @@ ecommerce-platform/
 │   ├── services/
 │   └── supabase/
 ├── public/
+├── types/
 ├── proxy.ts
-├── .env.local
-└── package.json
+├── package.json
+└── README.md
 
 🚀 Getting Started
 
@@ -100,7 +110,7 @@ Make sure you have installed:
 
 1. Clone the repository
 
-git clone https://github.com/https://github.com/Harsha-Dev-01-coder/ecommerce-platform/ecommerce-platform.git
+git clone https://github.com/Harsha-Dev-01-coder/ecommerce-platform.git
 
 2. Navigate into the project
 
@@ -125,7 +135,7 @@ Important: Never commit .env.local or expose secret service-role keys in fronten
 
 Create a Supabase project and configure the database tables and security policies required by the application.
 
-The application uses tables for:
+The application uses the following tables:
 
 * products
 * profiles
@@ -181,13 +191,13 @@ Access is enforced through server-side authorization and Supabase Row Level Secu
 
 🌐 Deployment
 
-The application is designed for deployment on Vercel.
+ShopSphere is deployed using Vercel.
 
-Live Application: Coming soon.
+Live Application: https://ecommerce-platform-ten-gamma.vercel.app/
 
-GitHub Repository: https://github.com/YOUR-GITHUB-USERNAME/ecommerce-platform
+GitHub Repository: https://github.com/Harsha-Dev-01-coder/ecommerce-platform
 
-Add your deployed application URL here after completing deployment.
+The project is connected to GitHub, and changes pushed to the main branch trigger automatic Vercel deployments.
 
 👨‍💻 Developer
 
