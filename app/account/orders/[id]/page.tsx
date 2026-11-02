@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { connection } from "next/server";
 import { notFound, redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 
@@ -6,9 +7,22 @@ type OrderDetailsPageProps = {
   params: Promise<{ id: string }>;
 };
 
+type ShippingAddress = {
+  full_name?: string;
+  phone?: string;
+  address_line1?: string;
+  address_line2?: string | null;
+  city?: string;
+  state?: string;
+  postal_code?: string;
+  country?: string;
+};
+
 export default async function OrderDetailsPage({
   params,
 }: OrderDetailsPageProps) {
+  await connection();
+
   const { id } = await params;
   const supabase = await createClient();
 
@@ -45,16 +59,7 @@ export default async function OrderDetailsPage({
     throw new Error("Could not load order items.");
   }
 
-  const address = order.shipping_address as {
-    full_name?: string;
-    phone?: string;
-    address_line1?: string;
-    address_line2?: string | null;
-    city?: string;
-    state?: string;
-    postal_code?: string;
-    country?: string;
-  };
+  const address = order.shipping_address as ShippingAddress;
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat("en-IN", {
@@ -76,9 +81,11 @@ export default async function OrderDetailsPage({
           <p className="text-sm font-semibold uppercase tracking-widest text-indigo-400">
             ShopSphere
           </p>
+
           <h1 className="mt-3 text-4xl font-bold text-white">
             Order Details
           </h1>
+
           <p className="mt-3 break-all text-sm text-gray-400">
             Order ID: {order.id}
           </p>
@@ -88,6 +95,7 @@ export default async function OrderDetailsPage({
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
               <p className="text-sm text-gray-400">Order Date</p>
+
               <p className="mt-1 font-medium text-white">
                 {new Date(order.created_at).toLocaleString("en-IN")}
               </p>
@@ -108,10 +116,13 @@ export default async function OrderDetailsPage({
             <p className="font-semibold text-white">{address.full_name}</p>
             <p>{address.phone}</p>
             <p>{address.address_line1}</p>
+
             {address.address_line2 && <p>{address.address_line2}</p>}
+
             <p>
               {address.city}, {address.state} - {address.postal_code}
             </p>
+
             <p>{address.country}</p>
           </div>
         </section>
@@ -131,6 +142,7 @@ export default async function OrderDetailsPage({
                   <p className="font-medium text-white">
                     {item.product_name}
                   </p>
+
                   <p className="mt-1 text-sm text-gray-400">
                     Quantity: {item.quantity}
                   </p>
@@ -147,6 +159,7 @@ export default async function OrderDetailsPage({
             <span className="text-lg font-semibold text-white">
               Order Total
             </span>
+
             <span className="text-xl font-bold text-indigo-400">
               {formatPrice(Number(order.subtotal))}
             </span>

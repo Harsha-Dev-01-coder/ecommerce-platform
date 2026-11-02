@@ -1,8 +1,11 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { connection } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 
 export default async function OrdersPage() {
+  await connection();
+
   const supabase = await createClient();
 
   const {
@@ -38,9 +41,11 @@ export default async function OrdersPage() {
           <p className="text-sm font-semibold uppercase tracking-widest text-indigo-400">
             ShopSphere
           </p>
+
           <h1 className="mt-3 text-4xl font-bold text-white">
             My Orders
           </h1>
+
           <p className="mt-3 text-gray-400">
             View your order history and track your purchases.
           </p>
@@ -51,9 +56,11 @@ export default async function OrdersPage() {
             <h2 className="text-xl font-semibold text-white">
               No orders yet
             </h2>
+
             <p className="mt-3 text-gray-400">
               Your completed purchases will appear here.
             </p>
+
             <Link
               href="/products"
               className="mt-6 inline-block rounded-lg bg-indigo-600 px-6 py-3 font-semibold text-white hover:bg-indigo-500"
@@ -70,6 +77,7 @@ export default async function OrdersPage() {
               >
                 <div>
                   <p className="text-sm text-gray-400">Order ID</p>
+
                   <p className="mt-1 break-all font-medium text-white">
                     {order.id}
                   </p>
@@ -81,6 +89,7 @@ export default async function OrdersPage() {
 
                 <div>
                   <p className="text-sm text-gray-400">Total</p>
+
                   <p className="mt-1 text-lg font-bold text-white">
                     {new Intl.NumberFormat("en-IN", {
                       style: "currency",
